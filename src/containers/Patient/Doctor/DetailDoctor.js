@@ -7,6 +7,8 @@ import './DetailDoctor.scss'
 import HomeHeader from '../../HomePage/HomeHeader';
 import DoctorSchedule from './DoctorSchedule';
 import DoctorExtrainFor from './DoctorExtrainFor';
+import LikeAndShare from '../SocialPlugin/LikeAndShare';
+import Comment from '../SocialPlugin/Comment';
 
 class DetailDoctor extends Component {
 
@@ -43,6 +45,9 @@ class DetailDoctor extends Component {
             nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
         }
 
+        let currentURL = +process.env.REACT_APP_FACEBOOK_APP_ID === 1 ?
+            '' : window.location.href;
+
         return (
             <>
                 <HomeHeader
@@ -65,6 +70,11 @@ class DetailDoctor extends Component {
                                         {detailDoctor.Markdown.description}
                                     </span>
                                 }
+                                <div className='like-share-plugin'>
+                                    <LikeAndShare
+                                        dataHref={currentURL}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,7 +100,12 @@ class DetailDoctor extends Component {
                         }
                     </div>
 
-                    <div className='comment-doctor'></div>
+                    <div className='comment-doctor'>
+                        <Comment
+                            dataHref={"https://developers.facebook.com/docs/plugins/comments#configurator"}
+                            width={'100%'}
+                        />
+                    </div>
                 </div>
             </>
         )
