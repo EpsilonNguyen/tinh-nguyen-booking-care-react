@@ -9,7 +9,7 @@ import DatePicker from '../../../components/Input/DatePicker';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import _ from 'lodash';
-import { saveBulkScheduleDoctor } from '../../../services/userService'
+import { saveBulkScheduleDoctor, getScheduleDoctorByDate } from '../../../services/userService'
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -28,7 +28,7 @@ class ManageSchedule extends Component {
         this.props.fetchAllScheduleTime();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    async componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.allDoctors !== this.props.allDoctors) {
             let dataSelect = this.buildDataInputSelect(this.props.allDoctors)
             this.setState({
@@ -51,6 +51,44 @@ class ManageSchedule extends Component {
             this.setState({
                 rangeTime: data
             })
+        }
+
+        if (prevState.currentDate !== this.state.currentDate) {
+            let formatedDate = new Date(this.state.currentDate).getTime();
+            let doctorId = this.state.selectedDoctor;
+
+            let res = await getScheduleDoctorByDate(doctorId.value, formatedDate);
+            if (res && res.errCode === 0) {
+                let data = res.data;
+                let { rangeTime } = this.state;
+                if (rangeTime && rangeTime.length > 0) {
+                    rangeTime = rangeTime.map((item) => ({ ...item, isSelected: false }))
+                }
+
+                if (data && data.length > 0) {
+                    let listTimeType = data.map(item => {
+                        item = item.timeType;
+                        return item;
+                    })
+
+                    rangeTime = rangeTime.map(item => {
+                        listTimeType.map(itemList => {
+                            if (item.keyMap === itemList)
+                                item.isSelected = true;
+                        })
+                        return item;
+                    })
+                    this.setState({
+                        rangeTime: rangeTime
+                    })
+                }
+
+                else {
+                    this.setState({
+                        rangeTime: rangeTime
+                    })
+                }
+            }
         }
     }
 

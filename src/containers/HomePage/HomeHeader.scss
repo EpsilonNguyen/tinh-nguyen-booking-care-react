@@ -5,7 +5,7 @@
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 100;
+    z-index: 10000;
 
     .home-header-content {
         width: 100%;
@@ -16,7 +16,6 @@
             width: 20%;
             display: flex;
             align-items: center;
-            border: 1px solid green;
 
             .header-logo {
                 height: 100%;
@@ -35,7 +34,6 @@
 
         .center-content {
             width: 55%;
-            border: 1px solid orange;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -50,7 +48,6 @@
 
         .right-content {
             width: 25%;
-            border: 1px solid grey;
             display: flex;
             justify-content: flex-end;
             align-items: center;
@@ -118,7 +115,6 @@
 
     .content-up {
         background-image: linear-gradient(rgba(126, 126, 126, 0.25), rgba(255, 255, 255, 0.1));
-        border: 1px solid red;
         padding-top: 15px;
         height: 65%;
 
@@ -163,7 +159,6 @@
     }
 
     .content-down {
-        border: 1px solid green;
         padding-bottom: 10px;
         height: 35%;
         display: flex;
@@ -178,7 +173,6 @@
             justify-content: center;
 
             .option-child {
-                border: 1px solid red;
                 width: 100px;
 
                 .icon-child {

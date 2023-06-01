@@ -189,7 +189,8 @@ class UserRedux extends Component {
     handleEditUserFromParent = (user) => {
         let imageBase64 = '';
         if (user.image) {
-            imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+            // imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+            imageBase64 = user.image;
         }
 
         this.setState({
@@ -221,7 +222,7 @@ class UserRedux extends Component {
         return (
             <div className="user-redux-container">
                 <div className='title'>
-                    User Redux hoi dan it
+                    User Redux
                 </div>
                 <div className='user-redux-body'>
                     <div className='container'>

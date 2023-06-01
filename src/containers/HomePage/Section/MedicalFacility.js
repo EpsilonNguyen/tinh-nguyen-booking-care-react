@@ -48,7 +48,7 @@ class MedicalFacility extends Component {
                                             onClick={() => { this.handleViewDetailClinic(item) }} >
                                             <div
                                                 className='bg-image section-medical-facility'
-                                                style={{ backgroundImage: `url(${item.image})` }}
+                                                style={{ backgroundImage: `url(${item.image})`, border: "1px solid grey" }}
                                             ></div>
                                             <div className='medical-facility-name'>{item.name}</div>
                                         </div>
