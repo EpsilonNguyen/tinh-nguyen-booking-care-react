@@ -11,7 +11,8 @@ class VerifyEmail extends Component {
         super(props)
         this.state = {
             statusVerify: false,
-            errCode: 0
+            errCode: 0,
+            errMessage: ''
         }
     }
 
@@ -20,15 +21,18 @@ class VerifyEmail extends Component {
             let urlParams = new URLSearchParams(this.props.location.search);
             let token = urlParams.get('token');
             let doctorId = urlParams.get('doctorId');
+            let action = urlParams.get('action');
             let res = await postVerifyBookAppointment({
                 token: token,
-                doctorId: doctorId
+                doctorId: doctorId,
+                action: action
             })
 
             if (res && res.errCode === 0) {
                 this.setState({
                     statusVerify: true,
-                    errCode: res.errCode
+                    errCode: res.errCode,
+                    errMessage: res.errMessage
                 })
             } else {
                 this.setState({
@@ -40,7 +44,7 @@ class VerifyEmail extends Component {
     }
 
     render() {
-        let { statusVerify, errCode } = this.state;
+        let { statusVerify, errCode, errMessage } = this.state;
 
         return (
             <>
@@ -53,7 +57,7 @@ class VerifyEmail extends Component {
                         :
                         <div>
                             {+errCode === 0 ?
-                                <div className='infor-booking'>Xác nhận lịch hẹn thành công</div>
+                                <div className='infor-booking'>{errMessage}</div>
                                 :
                                 <div className='infor-booking'>Lịch hẹn không tồn tại hoặc đã được xác nhận!</div>
                             }

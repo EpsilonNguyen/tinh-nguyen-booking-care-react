@@ -33,7 +33,8 @@
             "specialty": "Specialties",
             "manage-specialty": "Manage specialties",
             "handbook": "Handbook",
-            "manage-handbook": "Manage handbook"
+            "manage-handbook": "Manage handbook",
+            "manage-satistic": "Manahe satistic"
         },
         "system": {
             "header": "User System"

@@ -101,6 +101,10 @@ const postSendRemedy = (data) => {
     return axios.post(`/api/send-remedy`, data);
 }
 
+const getCountPatientByDate = (date) => {
+    return axios.get(`/api/get-count-patient-by-date?date=${date}`);
+}
+
 export {
     handleLoginAPI, getAllUsers,
     deleteUserService, createNewUserService,
@@ -113,5 +117,6 @@ export {
     createNewSpecialty, getAllSpecialty,
     getAllDetailSpecialtyById, createNewClinic,
     getAllClinic, getAllDetailClinicById,
-    getAllPatientForDoctor, postSendRemedy
+    getAllPatientForDoctor, postSendRemedy,
+    getCountPatientByDate
 }
