@@ -39,10 +39,16 @@ div._loading_overlay_wrapper {
             }
 
             .mp-btn-confirm {
-                margin-right: 10px;
                 height: 30px;
                 border-radius: 3px;
                 background: orange;
+            }
+
+            .mp-btn-cancel {
+                height: 30px;
+                border-radius: 3px;
+                background: red;
+                color: white;
             }
 
             .mp-btn-remedy {

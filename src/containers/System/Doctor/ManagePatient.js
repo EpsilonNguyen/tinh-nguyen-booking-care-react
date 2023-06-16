@@ -9,6 +9,7 @@ import { LANGUAGES } from '../../../utils';
 import { toast } from 'react-toastify';
 import LoadingOverlay from 'react-loading-overlay';
 import RemedyModal from '../../Patient/Doctor/RemedyModal';
+import { deleteSchedulePatientByDate } from '../../../services/userService';
 
 class ManagePatient extends Component {
 
@@ -52,7 +53,6 @@ class ManagePatient extends Component {
     }
 
     handleBtnConfirm = (item) => {
-        console.log(">>> check item: ", item)
         let data = {
             doctorId: item.doctorId,
             patientId: item.patientId,
@@ -65,6 +65,25 @@ class ManagePatient extends Component {
             isOpenRemedyModal: true,
             dataModal: data
         })
+    }
+
+    handleBtnCancel = async (item) => {
+        let data = {
+            doctorId: item.doctorId,
+            patientId: item.patientId,
+            email: item.patientData.email,
+            timeType: item.timeType,
+            date: item.date
+        }
+
+        let res = await deleteSchedulePatientByDate(data);
+
+        if (res && res.errCode === 0) {
+            toast.success("Delete schedule patient success!")
+        }
+        else {
+            toast.error("Fail to delete schedule patient!")
+        }
     }
 
     closeRemedyModal = () => {
@@ -140,7 +159,8 @@ class ManagePatient extends Component {
                                             <th>Họ và tên</th>
                                             <th>Địa chỉ</th>
                                             <th>Giới tính</th>
-                                            <th>Actions</th>
+                                            <th>Action</th>
+                                            <th>Action</th>
                                         </tr>
 
                                         {dataPatient && dataPatient.length > 0 ?
@@ -161,12 +181,17 @@ class ManagePatient extends Component {
                                                                 onClick={() => { this.handleBtnConfirm(item) }}
                                                             >Xác nhận</button>
                                                         </td>
+                                                        <td>
+                                                            <button className='mp-btn-cancel'
+                                                                onClick={() => { this.handleBtnCancel(item) }}
+                                                            >Hủy lịch</button>
+                                                        </td>
                                                     </tr>
                                                 )
                                             })
                                             :
                                             <tr>
-                                                <td colSpan="6" style={{ textAlign: "center" }}>no data</td>
+                                                <td colSpan="7" style={{ textAlign: "center" }}>no data</td>
                                             </tr>
                                         }
 

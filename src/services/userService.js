@@ -105,6 +105,10 @@ const getCountPatientByDate = (date) => {
     return axios.get(`/api/get-count-patient-by-date?date=${date}`);
 }
 
+const deleteSchedulePatientByDate = (data) => {
+    return axios.post(`/api/delete-schedule-patient-by-date`, data);
+}
+
 export {
     handleLoginAPI, getAllUsers,
     deleteUserService, createNewUserService,
@@ -118,5 +122,5 @@ export {
     getAllDetailSpecialtyById, createNewClinic,
     getAllClinic, getAllDetailClinicById,
     getAllPatientForDoctor, postSendRemedy,
-    getCountPatientByDate
+    getCountPatientByDate, deleteSchedulePatientByDate
 }
