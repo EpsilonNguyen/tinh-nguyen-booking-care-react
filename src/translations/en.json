@@ -88,7 +88,7 @@
             "title": "Information to book a medical appointment",
             "fullName": "Fullname",
             "phoneNumber": "Phone number",
-            "email": "Email",
+            "email": "Email or Name account",
             "address": "Address",
             "reason": "Reasons for medical examination",
             "birthday": "Date of birth",
@@ -96,7 +96,7 @@
             "btnConfirm": "Confirm",
             "btnCancel": "Cancel",
             "priceBooking": "Free booking",
-            "price": "Price"
+            "price": "Price: "
         }
     },
     "admin": {

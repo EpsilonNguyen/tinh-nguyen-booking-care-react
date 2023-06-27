@@ -97,6 +97,10 @@ const getAllPatientForDoctor = (data) => {
     return axios.get(`/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`);
 }
 
+const getAllScheduleForPatient = (data) => {
+    return axios.get(`/api/get-list-schedule-for-patient?patientId=${data.patientId}&date=${data.date}`);
+}
+
 const postSendRemedy = (data) => {
     return axios.post(`/api/send-remedy`, data);
 }
@@ -121,6 +125,7 @@ export {
     createNewSpecialty, getAllSpecialty,
     getAllDetailSpecialtyById, createNewClinic,
     getAllClinic, getAllDetailClinicById,
-    getAllPatientForDoctor, postSendRemedy,
-    getCountPatientByDate, deleteSchedulePatientByDate
+    getAllPatientForDoctor, getAllScheduleForPatient,
+    postSendRemedy, getCountPatientByDate,
+    deleteSchedulePatientByDate
 }
